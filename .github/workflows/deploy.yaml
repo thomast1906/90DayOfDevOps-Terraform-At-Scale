@@ -7,7 +7,11 @@ on:
   pull_request:
  
 jobs:
+  terraform-ci:
+    if: github.ref != 'refs/heads/main'
+    uses: ./.github/workflows/template-terraform-ci.yaml
   terraform:
+    depends-on: terraform-ci
     uses: ./.github/workflows/template-terraform.yaml
     strategy:
       matrix:
@@ -29,6 +33,3 @@ jobs:
       TENANT_ID: ${{ secrets.TENANT_ID }}
       DEPLOYMENT_SUBSCRIPTION_ID: ${{ secrets.DEPLOYMENT_SUBSCRIPTION_ID }}
       USER_TOKEN: ${{ secrets.USER_TOKEN }}
-  terraform-ci:
-    if: github.ref != 'refs/heads/main'
-    uses: ./.github/workflows/template-terraform-ci.yaml
