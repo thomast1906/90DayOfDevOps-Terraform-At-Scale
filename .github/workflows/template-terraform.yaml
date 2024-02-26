@@ -32,7 +32,8 @@ on:
         required: true
       DEPLOYMENT_SUBSCRIPTION_ID:
         required: true
-
+      USER_TOKEN:
+        required: true
 
 jobs:
   deploy-terraform:
