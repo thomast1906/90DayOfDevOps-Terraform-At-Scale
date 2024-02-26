@@ -31,4 +31,4 @@ jobs:
   terraform-ci:
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/main'
-    uses: ./.github/workflows/job-template.yaml
+    uses: ./.github/workflows/template-terraform-ci.yaml
