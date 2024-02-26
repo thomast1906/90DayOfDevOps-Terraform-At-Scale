@@ -29,8 +29,5 @@ jobs:
       TENANT_ID: ${{ secrets.TENANT_ID }}
       DEPLOYMENT_SUBSCRIPTION_ID: ${{ secrets.DEPLOYMENT_SUBSCRIPTION_ID }}
   terraform-ci:
-    runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/main'
-    steps:
-      - name: Terraform-CI
-        uses: ./.github/workflows/template-terraform-ci.yaml
+    uses: ./.github/workflows/my-workflow.yaml
