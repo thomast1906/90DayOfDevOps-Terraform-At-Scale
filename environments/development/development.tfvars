@@ -20,6 +20,12 @@ virtual_network_subnets = [
     address_prefix    = "192.168.1.0/24"
     service_endpoints = ["Microsoft.KeyVault"]
     enable_pe_policy  = false
+  },
+  {
+    name              = "privateendpoints2"
+    address_prefix    = "192.168.2.0/24"
+    service_endpoints = ["Microsoft.KeyVault"]
+    enable_pe_policy  = false
   }
 ]
 
