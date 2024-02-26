@@ -16,8 +16,8 @@ module "virtual_network" {
 
   resource_group_name = local.resource_group_name
 
-  network_address_space     = var.virtual_network_address_space
-  subnets                   = var.virtual_network_subnets
+  network_address_space = var.virtual_network_address_space
+  subnets               = var.virtual_network_subnets
 
   log_analytics_workspace_id   = data.azurerm_log_analytics_workspace.log_analytics.id
   log_analytics_retention_days = data.azurerm_log_analytics_workspace.log_analytics.retention_in_days
