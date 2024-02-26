@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/template-terraform.yaml
     strategy:
       matrix:
-        environment: ['development','production']
+        environment: ['production']
         platform_directory: ['core','logging','network']
       fail-fast: true
       max-parallel: 1
