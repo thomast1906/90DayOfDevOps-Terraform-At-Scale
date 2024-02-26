@@ -10,6 +10,6 @@ module "log_analytics" {
   region          = var.region
 
   resource_group_name = data.azurerm_resource_group.resource_group.name
-  tags = var.tags
+  tags                = var.tags
 
 }

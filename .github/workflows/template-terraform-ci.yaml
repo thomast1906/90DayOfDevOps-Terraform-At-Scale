@@ -1,0 +1,27 @@
+name: Terraform CI Checks
+
+on:
+  workflow_call:
+
+jobs:
+  deploy-terraform-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+ 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.7.4
+          terraform_wrapper: false
+          
+      - name: Terraform Fmt
+        id: fmt
+        run: find . -type f \( -name "*.tf" -o -name "*.tfvars" \) -execdir terraform fmt {} \;
+  
+      - name: Auto Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Terraform fmt"
+          file_pattern: "*.tf *.tfvars"
+          commit_user_name: "github-actions[bot]"

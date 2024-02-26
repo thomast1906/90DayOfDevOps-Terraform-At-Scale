@@ -32,7 +32,8 @@ on:
         required: true
       DEPLOYMENT_SUBSCRIPTION_ID:
         required: true
-
+      USER_TOKEN:
+        required: true
 
 jobs:
   deploy-terraform:
@@ -46,7 +47,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.7.4
-          terraform_wrapper: false
+          terraform_wrapper: true
 
       - name: Terraform Init
         id: init
@@ -58,6 +59,11 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
         working-directory: ./platform/${{ inputs.platform_directory }}
         shell: bash
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: ./platform/${{ inputs.platform_directory }}
           
       - name: Terraform Plan  
         id: plan
@@ -71,6 +77,36 @@ jobs:
         working-directory: ./platform/${{ inputs.platform_directory }}
         shell: bash
         continue-on-error: false
+
+      - name: Update Pull Request
+        uses: actions/github-script@v7
+        if: github.ref != 'refs/heads/main'
+        with:
+          github-token: ${{ secrets.USER_TOKEN }}
+          script: |
+            const output = `
+            #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            <details><summary>Show Plan</summary>
+  
+            \`\`\`\n
+            ${{ steps.plan.outputs.stdout }}
+            \`\`\`
+  
+            </details>
+  
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+  
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
 
       - name: Terraform Apply  
         id: apply
