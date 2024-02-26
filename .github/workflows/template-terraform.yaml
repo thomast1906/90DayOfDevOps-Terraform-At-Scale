@@ -84,7 +84,7 @@ jobs:
         with:
           github-token: ${{ secrets.USER_TOKEN }}
           script: |
-            const output = `
+            const output = `#### Terraform Plan for: 🤖\`${{ inputs.environment }}-${{ inputs.platform_directory }}\`
             #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
