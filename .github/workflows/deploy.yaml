@@ -30,4 +30,4 @@ jobs:
       DEPLOYMENT_SUBSCRIPTION_ID: ${{ secrets.DEPLOYMENT_SUBSCRIPTION_ID }}
   terraform-ci:
     if: github.ref != 'refs/heads/main'
-    uses: ./.github/workflows/my-workflow.yaml
+    uses: ./.github/workflows/template-terraform-ci.yaml
