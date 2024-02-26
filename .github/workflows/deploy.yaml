@@ -11,7 +11,7 @@ jobs:
     if: github.ref != 'refs/heads/main'
     uses: ./.github/workflows/template-terraform-ci.yaml
   terraform:
-    depends-on: terraform-ci
+    needs: [terraform-ci]
     uses: ./.github/workflows/template-terraform.yaml
     strategy:
       matrix:
