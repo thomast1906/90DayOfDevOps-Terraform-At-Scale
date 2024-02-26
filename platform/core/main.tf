@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "resource_group" {
-  name = format("rg-%s-%s",
+  name = format("90daydevops-%s-%s",
     var.environment,
     var.instance_number
   )

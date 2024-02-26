@@ -1,7 +1,7 @@
 resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
   location = var.location
 
-  name = format("law-%s-%s-%s",
+  name = format("90daydevops-law-%s-%s-%s",
     var.environment,
     var.region,
     var.instance_number
