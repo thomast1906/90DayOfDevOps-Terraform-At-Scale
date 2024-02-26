@@ -59,6 +59,11 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
         working-directory: ./platform/${{ inputs.platform_directory }}
         shell: bash
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: ./platform/${{ inputs.platform_directory }}
           
       - name: Terraform Plan  
         id: plan
@@ -75,10 +80,11 @@ jobs:
 
       - name: Update Pull Request
         uses: actions/github-script@v7
+        if: github.ref != 'refs/heads/main'
         with:
           github-token: ${{ secrets.USER_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            const output = `
             #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
