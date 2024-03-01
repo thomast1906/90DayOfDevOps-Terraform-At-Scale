@@ -7,5 +7,7 @@ output "network_name" {
 }
 
 output "network_resource_group" {
-  value = azurerm_virtual_network.virtual_network.resource_group_name
+
+
+        value = azurerm_virtual_network.virtual_network.resource_group_name
 }

@@ -18,6 +18,8 @@ virtual_network_subnets = [
   {
     name              = "privateendpoints"
     address_prefix    = "192.168.1.0/24"
+
+    
     service_endpoints = ["Microsoft.KeyVault"]
     enable_pe_policy  = false
   }
@@ -29,5 +31,5 @@ tags = {
   "Environment" = "development"
   "Repository"  = "90DayOfDevOps-Terraform-At-Scale"
   "Owner"       = "90DayOfDevOps"
-  "Example"     = "Thomas"
+  "Example"             = "ThomasTest"
 }
