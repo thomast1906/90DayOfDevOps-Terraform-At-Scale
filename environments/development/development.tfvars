@@ -29,5 +29,5 @@ tags = {
   "Environment" = "development"
   "Repository"  = "90DayOfDevOps-Terraform-At-Scale"
   "Owner"       = "90DayOfDevOps"
-  "Example"       = "Thomas"
+  "Example"     = "Thomas"
 }
