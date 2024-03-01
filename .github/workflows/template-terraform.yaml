@@ -1,4 +1,4 @@
-name: Reusable workflow example
+name: Terraform Deploy
 
 on:
   workflow_call:
