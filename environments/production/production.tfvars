@@ -28,4 +28,5 @@ tags = {
   "DeployedBy"  = "Terraform"
   "Environment" = "production"
   "Repository"  = "90DayOfDevOps-Terraform-At-Scale"
+    "Example"       = "Thomas"
 }
