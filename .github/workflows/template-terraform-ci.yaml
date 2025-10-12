@@ -20,7 +20,7 @@ jobs:
         run: find . -type f \( -name "*.tf" -o -name "*.tfvars" \) -execdir terraform fmt {} \;
   
       - name: Auto Commit Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Terraform fmt"
           file_pattern: "*.tf *.tfvars"
